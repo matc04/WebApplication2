@@ -37,8 +37,8 @@ namespace WebApplication2.Controllers
         }
 
         ////[Authorize(Roles = R1)]
-        //public IActionResult DashBoard()
-        //{
+        public IActionResult DashBoard()
+        {
         //    // get user's Name (email address) from Identity (dbo.AspNetUsers)
         //    string userName = "Manuel";
 
@@ -51,8 +51,8 @@ namespace WebApplication2.Controllers
 
         //    //    string fname = await pubNameQuery.SingleAsync();
 
-        //    return View();
-        //}
+            return View();
+        }
 
         public IActionResult Privacy()
         {

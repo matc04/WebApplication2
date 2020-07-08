@@ -196,3 +196,5 @@ C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\WebApplica
 C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\WebApplication2.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\Razor\Views\Policy\Lista.cshtml.g.cs
 C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\Razor\Views\Policy\Search.cshtml.g.cs
+C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\Razor\Views\Receipt\Lista.cshtml.g.cs
+C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\Razor\Views\Policy\PolicysJson.cshtml.g.cs

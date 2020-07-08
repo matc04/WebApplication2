@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace WebApplication2.Models
 {
-	public class Tin_UnderWBook
-	{
+    public class Tin_DXP
+    {
 
 
 		[Display(Name = "Origen")]
@@ -18,22 +18,18 @@ namespace WebApplication2.Models
 		[DisplayFormat(DataFormatString = "{0:F0}")]
 		public decimal Nyear { get; set; }
 
-		[Display(Name = "Mes")]
+		[Display(Name = "Trinestre")]
 		[DisplayFormat(DataFormatString = "{0:F0}")]
-		public decimal Nmonth { get; set; }
-
+		public decimal Ntrimester { get; set; }
+		
 		public string Sprovisional { get; set; }
 
-		[Display(Name = "Tipo")]
-		public string Stype { get; set; }
 		public string Sbrancht { get; set; }
 
 		[Display(Name = "Ramo")]
 		[DisplayFormat(DataFormatString = "{0:F0}")]
 		public decimal Nbranch { get; set; }
 
-		[Display(Name = "Ramo")]
-		public string Sbranch { get; set; }
 		public decimal Nusercode { get; set; }
 
 		[DataType(DataType.Date)]
@@ -63,51 +59,20 @@ namespace WebApplication2.Models
 		[DataType(DataType.Date)]
 		public DateTime Dexpirdat { get; set; }
 
+		[Display(Name = "Código Cliente")]
+		public string Sclient { get; set; }
+
 		[Display(Name = "Nombre Cliente")]
 		public string Scliename { get; set; }
-
-		[Display(Name = "Provincia")]
-		public string Sprovince { get; set; }
-		public string Snopayroll { get; set; }
-
-		[Display(Name = "Capital Asegurado")]
-		public decimal Ncapital { get; set; }
 
 		[Display(Name = "Moneda")]
 		public string Scurrency { get; set; }
 		public decimal Nexchange { get; set; }
-		public decimal Npremcover { get; set; }
-		public decimal Nsurcharge { get; set; }
-		public decimal Ndiscount { get; set; }
-		public decimal Ncapitalimp { get; set; }
-		public decimal Niva { get; set; }
-		public decimal Npercepiva { get; set; }
-		public decimal Npercepiibb { get; set; }
-		public decimal Ntax { get; set; }
-		public decimal Nstamp { get; set; }
-		public decimal Nstampdisco { get; set; }
-		public decimal Npremium { get; set; }
-
-		[Display(Name = "Intermediario")]
-		public decimal Nintermed { get; set; }
-		public decimal Ncomamou { get; set; }
-		public decimal Nothercomm { get; set; }
-		public decimal Ncoshare { get; set; }
-		public decimal Nqlives { get; set; }
-		public decimal Ntratypei { get; set; }
-		public decimal Ntype_amend { get; set; }
-		public decimal Nannuaprem { get; set; }
-		public decimal Nid { get; set; }
-		public decimal Nprovince { get; set; }
-		public decimal Nproduct { get; set; }
-		public string Scertype { get; set; }
-		public string Spolitype { get; set; }
-		public decimal Ncurrency { get; set; }
+		public decimal Npremiumexp { get; set; }
+		public decimal Npremiumpend { get; set; }
+		public decimal Npending { get; set; }
+		public decimal Ncommission { get; set; }
 		public string Sofficialpol { get; set; }
-
-		public int IntermediaId { get; set; }
-
-		public Intermedia Intermedia { get; set; }
 
 	}
 }
