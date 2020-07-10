@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -9,12 +13,37 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="~/lib/fontawesome-free/css/all.min.css">
 
+    <link rel="stylesheet" href="~/lib/footable/css/footable.bootstrap.min.css">
+
+
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <!-- jQuery -->
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <!-- FooTable -->
+    @*<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>*@
+
+   
+    <!-- Bootstrap 4 -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/lib/chart.js/Chart.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/js/demo.js"></script>
+
+    <!-- DataTables -->
+    @*<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>*@
+    @*<script src="~/lib/datatables/jquery.dataTables.min.js"></script>*@
+    @*<script src="~/lib/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>*@
+    @*<script src="~/lib/datatables-responsive/js/dataTables.responsive.min.js"></script>*@
+    @*<script src="~/lib//datatables-responsive/js/responsive.bootstrap4.min.js"></script>*@
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -722,10 +751,10 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        
+
                         <!-- /.col (LEFT) -->
                         <div class="col-md-6">
-                          
+
                             <!-- BAR CHART -->
                             <div class="card card-success">
                                 <div class="card-header">
@@ -746,45 +775,55 @@
                                 <!-- /.card-body -->
                             </div>
                             <!-- /.card -->
-                        
-
                         </div>
-                        <!-- /.col (RIGHT) -->
                     </div>
-                    <!-- /.row -->
-                </div><!-- /.container-fluid -->
+
+                    <div class="row">
+
+                        <!-- DONUT CHART -->
+                        <div class="card card-danger">
+                            <div class="card-header">
+                                <h3 class="card-title">Donut Chart</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart">
+
+                                    <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Left col -->
+                        <section class="col-lg-7 connectedSortable">
+                            <table id="example" class="display"></table>
+                        </section>
+                    </div>
+                </div>
             </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.0.5
-            </div>
-            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-            reserved.
-        </footer>
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Add Content Here -->
-        </aside>
-        <!-- /.control-sidebar -->
+
+        </div><!-- /.container-fluid -->
+
     </div>
+  
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Add Content Here -->
+    </aside>
+    <!-- /.control-sidebar -->
     <!-- ./wrapper -->
     <!-- ./wrapper -->
-    <!-- jQuery -->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap 4 -->
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- ChartJS -->
-    <script src="~/lib/chart.js/Chart.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="~/js/demo.js"></script>
-
     <!-- page script -->
     <script>
         $(function () {
@@ -793,37 +832,41 @@
              * Here we will create a few charts using ChartJS
              */
 
+            var data;
+
             async function doAjax() {
-               let result;
+                let result;
 
-               try {
-                   result = await $.ajax({
-                       url: "https://localhost:44337/policy/datajson",
-                       type: 'GET'
-                   });
+                try {
+                    result = await $.ajax({
+                        url: "https://localhost:44337/policy/datajson",
+                        type: 'GET',
+                        data: { initDate: '2018-01-01', endDate: '2018-01-28' }
+                    });
 
-                   return result;
-               } catch (error) {
-                   console.error(error);
-               }
+                    return result;
+                } catch (error) {
+                    console.error(error);
+                }
             }
 
             // Llamarla y usarla como promesa
-            var data;
             doAjax().then(resultado => {
                 data = resultado;
-                
+
                 var dataLabels = [];
                 var dataValues = [];
+                var dataLabelsDonut = [];
+                var dataValuesDonut = [];
 
-                var data_1 = data[0];                          //Datos del cuadro 
+                var data_1 = data[0];                          //Datos del cuadro
                 for (var i = 0; i < data_1.length; i++) {
 
                     dataLabels.push(data_1[i].period)
                     dataValues.push(data_1[i].netSales)
-                    
+
                 }
-           
+
                 //-------------
                 //- BAR CHART -
                 //-------------
@@ -848,9 +891,69 @@
                     options: barChartOptions
                 })
 
-            })
+                var data_2 = data[1];                          //Datos del cuadro Donut
+                for (var i = 0; i < data_2.length; i++) {
 
+                    dataLabelsDonut.push(data_2[i].branch)
+                    dataValuesDonut.push(data_2[i].netSales)
+
+                }
+
+                //-------------
+                //- DONUT CHART -
+                //-------------
+                // Get context with jQuery - using jQuery's .get() method.
+                var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+                var donutData = {
+                    labels: dataLabelsDonut,
+                    datasets: [
+                        {
+                            data: dataValuesDonut,
+                            backgroundColor: ['#f56954', '#00a65a'],
+                        }
+                    ]
+                }
+                var donutOptions = {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                }
+                //Create pie or douhnut chart
+                // You can switch between pie and douhnut using the method below.
+                var donutChart = new Chart(donutChartCanvas, {
+                    type: 'doughnut',
+                    data: donutData,
+                    options: donutOptions
+                })
+
+
+                var dataSet = [];
+                for (var i = 0; i < data[2].length; i++) {
+                    var dataAux = [];
+                    dataAux.push(data[2][i].nyear);
+                    dataAux.push(data[2][i].nmonth);
+                    dataAux.push(data[2][i].sbranch);
+                    dataAux.push(data[2][i].npolicy);
+                    dataAux.push(data[2][i].ncertif);
+                    dataAux.push(data[2][i].nreceipt);
+
+                    dataSet.push(dataAux);
+                }
+
+                console.log(dataSet);
+                $('#example').DataTable({
+                    data: dataSet,
+                    columns: [
+                        { title: "Ano" },
+                        { title: "Mes" },
+                        { title: "Ramo" },
+                        { title: "Poliza" },
+                        { title: "Certificado" },
+                        { title: "Recibo" }
+                    ]
+                });
+            });
         })
     </script>
+
 </body>
 </html>

@@ -20,7 +20,7 @@ namespace WebApplication2.Models
 
 		[Display(Name = "Mes")]
 		[DisplayFormat(DataFormatString = "{0:F0}")]
-		public decimal Nmonth { get; set; }
+		public decimal? Nmonth { get; set; }
 
 		public string Sprovisional { get; set; }
 
@@ -30,38 +30,38 @@ namespace WebApplication2.Models
 
 		[Display(Name = "Ramo")]
 		[DisplayFormat(DataFormatString = "{0:F0}")]
-		public decimal Nbranch { get; set; }
+		public decimal? Nbranch { get; set; }
 
 		[Display(Name = "Ramo")]
 		public string Sbranch { get; set; }
-		public decimal Nusercode { get; set; }
+		public decimal? Nusercode { get; set; }
 
 		[DataType(DataType.Date)]
-		public DateTime Dcompdate { get; set; }
+		public DateTime? Dcompdate { get; set; }
 
 		[Display(Name = "Póliza")]
 		[DisplayFormat(DataFormatString = "{0:F0}")]
-		public decimal Npolicy { get; set; }
+		public decimal? Npolicy { get; set; }
 
 		[Display(Name = "Certificado")]
 		[DisplayFormat(DataFormatString = "{0:F0}")]
-		public decimal Ncertif { get; set; }
+		public decimal? Ncertif { get; set; }
 
 		[Display(Name = "Recibo")]
 		[DisplayFormat(DataFormatString = "{0:F0}")]
-		public decimal Nreceipt { get; set; }
+		public decimal? Nreceipt { get; set; }
 
 		[Display(Name = "Fecha Emisión")]
 		[DataType(DataType.Date)]
-		public DateTime Dissuedat { get; set; }
+		public DateTime? Dissuedat { get; set; }
 
 		[Display(Name = "Fecha Efecto")]
 		[DataType(DataType.Date)]
-		public DateTime Deffecdate { get; set; }
+		public DateTime? Deffecdate { get; set; }
 
 		[Display(Name = "Fecha Vencimiento")]
 		[DataType(DataType.Date)]
-		public DateTime Dexpirdat { get; set; }
+		public DateTime? Dexpirdat { get; set; }
 
 		[Display(Name = "Nombre Cliente")]
 		public string Scliename { get; set; }
@@ -71,41 +71,41 @@ namespace WebApplication2.Models
 		public string Snopayroll { get; set; }
 
 		[Display(Name = "Capital Asegurado")]
-		public decimal Ncapital { get; set; }
+		public decimal? Ncapital { get; set; }
 
 		[Display(Name = "Moneda")]
 		public string Scurrency { get; set; }
-		public decimal Nexchange { get; set; }
-		public decimal Npremcover { get; set; }
-		public decimal Nsurcharge { get; set; }
-		public decimal Ndiscount { get; set; }
-		public decimal Ncapitalimp { get; set; }
-		public decimal Niva { get; set; }
-		public decimal Npercepiva { get; set; }
-		public decimal Npercepiibb { get; set; }
-		public decimal Ntax { get; set; }
-		public decimal Nstamp { get; set; }
-		public decimal Nstampdisco { get; set; }
-		public decimal Npremium { get; set; }
+		public decimal? Nexchange { get; set; }
+		public decimal? Npremcover { get; set; }
+		public decimal? Nsurcharge { get; set; }
+		public decimal? Ndiscount { get; set; }
+		public decimal? Ncapitalimp { get; set; }
+		public decimal? Niva { get; set; }
+		public decimal? Npercepiva { get; set; }
+		public decimal? Npercepiibb { get; set; }
+		public decimal? Ntax { get; set; }
+		public decimal? Nstamp { get; set; }
+		public decimal? Nstampdisco { get; set; }
+		public decimal? Npremium { get; set; }
 
 		[Display(Name = "Intermediario")]
-		public decimal Nintermed { get; set; }
-		public decimal Ncomamou { get; set; }
-		public decimal Nothercomm { get; set; }
-		public decimal Ncoshare { get; set; }
-		public decimal Nqlives { get; set; }
-		public decimal Ntratypei { get; set; }
-		public decimal Ntype_amend { get; set; }
-		public decimal Nannuaprem { get; set; }
-		public decimal Nid { get; set; }
-		public decimal Nprovince { get; set; }
-		public decimal Nproduct { get; set; }
-		public string Scertype { get; set; }
-		public string Spolitype { get; set; }
-		public decimal Ncurrency { get; set; }
-		public string Sofficialpol { get; set; }
+		public decimal? Nintermed { get; set; }
+		public decimal? Ncomamou { get; set; }
+		public decimal? Nothercomm { get; set; }
+		public decimal? Ncoshare { get; set; }
+		public decimal? Nqlives { get; set; }
+		public decimal? Ntratypei { get; set; }
+		public decimal? Ntype_amend { get; set; }
+		public decimal? Nannuaprem { get; set; }
+		public decimal? Nid { get; set; }
+		public decimal? Nprovince { get; set; }
+		public decimal? Nproduct { get; set; }
+		public string? Scertype { get; set; }
+		public string? Spolitype { get; set; }
+		public decimal? Ncurrency { get; set; }
+		public string? Sofficialpol { get; set; }
 
-		public int IntermediaId { get; set; }
+		public int? IntermediaId { get; set; }
 
 		public Intermedia Intermedia { get; set; }
 
