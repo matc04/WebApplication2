@@ -22,7 +22,10 @@ namespace WebApplication2.Data
 
         public DbSet<Tin_DXP> Tin_DXP { get; set; }
 
-        public  DbSet<GetTinUnderWBook> GetTinUnderWBook { get; set; }
+        public DbSet<ClientWeb> ClientWeb { get; set; }
+
+
+        public DbSet<GetTinUnderWBook> GetTinUnderWBook { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -19,8 +19,8 @@ namespace WebApplication2.Models.Procedures
 		public decimal Nyear { get; set; }
 
 		[Display(Name = "Mes")]
-		[DisplayFormat(DataFormatString = "{0:F0}")]
-		public decimal Nmonth { get; set; }
+		//[DisplayFormat(DataFormatString = "{0:F0}")]
+		public string Nmonth { get; set; }
 		
 		public string Sprovisional { get; set; }
 

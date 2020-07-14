@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.EntityFrameworkCore;
 using WebApplication2.Data;
 using WebApplication2.Models;
@@ -29,11 +26,11 @@ namespace WebApplication2.Controllers
 
             List<Tin_UnderWBook> policys = _context.Tin_UnderWBook.Take(50)
                                                                   .ToList();
-           
+
             //List<Tin_DXP> intermeds = _context.Tin_DXP.ToList();
 
             //Intermedia inter = _context.Intermedia.Find(105);
-
+            
             return View(policys);
         }
 
@@ -192,7 +189,6 @@ namespace WebApplication2.Controllers
                                                   netSales = listSales.Sum(item => item.Npremium)
                                               }).ToList();
 
-                // return Json(netSalesByPeriod);
                 arr[0] = netSalesByPeriod;
                 arr[1] = netSalesByBranch;
                 arr[2] = suscriptions;

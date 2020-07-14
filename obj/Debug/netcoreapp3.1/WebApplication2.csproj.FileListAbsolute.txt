@@ -198,3 +198,6 @@ C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\Razor\View
 C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\Razor\Views\Policy\Search.cshtml.g.cs
 C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\Razor\Views\Receipt\Lista.cshtml.g.cs
 C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\Razor\Views\Policy\PolicysJson.cshtml.g.cs
+C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\Razor\Views\Client\DashBoard.cshtml.g.cs
+C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Aside.cshtml.g.cs
+C:\Users\Usuario\source\repos\WebApplication2\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_NavBarPartial.cshtml.g.cs
