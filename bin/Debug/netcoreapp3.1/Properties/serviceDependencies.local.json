@@ -3,6 +3,18 @@
     "mssql1": {
       "type": "mssql.local",
       "connectionId": "DefaultConnection"
+    },
+    "mssql2": {
+      "type": "mssql.local",
+      "connectionId": "ClientWebContext"
+    },
+    "mssql3": {
+      "type": "mssql.local",
+      "connectionId": "SchoolContext"
+    },
+    "mssql4": {
+      "type": "mssql.local",
+      "connectionId": "ClientsContext"
     }
   }
 }

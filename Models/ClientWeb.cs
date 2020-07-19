@@ -1,17 +1,20 @@
-﻿using System;
+﻿using IdentityServer4.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebApplication2.Models
 {
-    public class ClientWeb
+
+	public class ClientWeb
     {
+
 		[Key]
         public int Id { get; set; }
 
 		[Display(Name = "Código Cliente")]
+		[Required]
 		public string CodClient { get; set; }
 
 		[Display(Name = "Número Identificación")]
@@ -39,12 +42,12 @@ namespace WebApplication2.Models
 		public DateTime InpDate { get; set; }
 
 		[Display(Name = "Sexo")]
-		public string Gender { get; set; }
+        public string Gender { get; set; }
 
-		[Display(Name = "Tipo Persona")]
-		public string Person_Type { get; set; }
+        [Display(Name = "Tipo Persona")]
+        public string Person_Type { get; set; }
 
-		[Display(Name = "Nombre Legal")]
+        [Display(Name = "Nombre Legal")]
 		public string? SlegalName { get; set; }
 
 		[Display(Name = "Nombre Completo")]
@@ -56,7 +59,22 @@ namespace WebApplication2.Models
 		[Display(Name = "Número Telefónico")]
 		public string? Phone_Number { get; set; }
 
-        public int GetAge()
+		//public PersonTypeEnum PersonSel { get; set; }
+
+		//public enum PersonTypeEnum
+		//{
+		//	[Display(Name = "Companies")]
+		//	PrivateSector,
+
+		//	[Display(Name = "PublicSector")]
+		//	PublicSector,
+
+		//	Internal
+		//}
+
+
+
+		public int GetAge()
         {
 			int age = 0;
 			if (this.Birthdat != null)
@@ -76,5 +94,8 @@ namespace WebApplication2.Models
 
 			return age;
         }
+
+
+		
 	}
 }

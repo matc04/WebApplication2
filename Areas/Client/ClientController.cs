@@ -8,9 +8,14 @@ using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.CodeAnalysis.Emit;
 using WebApplication2.Data;
 using WebApplication2.Models;
+using Areas.Models.Client;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using WebApplication2.Models.Enums;
 
 namespace WebApplication2.Areas.Client
 {
+
+    [Area("Client")]
     public class ClientController : Controller
     {
         private readonly WebApplication2DbContext _context;
@@ -28,39 +33,39 @@ namespace WebApplication2.Areas.Client
 
             int countAdult = clients.Where(x => x.GetAge() >= 18).Count();
 
-            ViewData["countAdult"] =  countAdult;
+            ViewData["countAdult"] = countAdult;
 
-            ViewData["countMinority"] =  clients.Count() - countAdult;
+            ViewData["countMinority"] = clients.Count() - countAdult;
 
             int countMinority = clients.Count() - countAdult;
 
-            var listPersonType = (from ClientWeb client in clients
-                                        group client by client.Person_Type
-                                          into listType
-                                        select new
-                                        {
-                                            type = listType.Key,
-                                            countType = listType.Count()
-                                        }).ToList();
+            //var listPersonType = (from ClientWeb client in clients
+            //                      group client by client.Person_Type
+            //                              into listType
+            //                      select new
+            //                      {
+            //                          type = listType.Key,
+            //                          countType = listType.Count()
+            //                      }).ToList();
 
-            foreach (var item in listPersonType)
-            {
-                ViewData[item.type] =  item.countType;
-            }
+            //foreach (var item in listPersonType)
+            //{
+            //    ViewData[item.type] = item.countType;
+            //}
 
-            var listClientGender = (from ClientWeb client in clients
-                                  group client by client.Gender
-                                          into listGender
-                                  select new
-                                  {
-                                      gender = listGender.Key,
-                                      countGender = listGender.Count()
-                                  }).ToList();
+            //var listClientGender = (from ClientWeb client in clients
+            //                        group client by client.Gender
+            //                              into listGender
+            //                        select new
+            //                        {
+            //                            gender = listGender.Key,
+            //                            countGender = listGender.Count()
+            //                        }).ToList();
 
-            foreach (var item in listClientGender)
-            {
-                ViewData[item.gender] =  item.countGender;
-            }
+            //foreach (var item in listClientGender)
+            //{
+            //    ViewData[item.gender] = item.countGender;
+            //}
 
             return View("DashBoard");
         }
@@ -173,7 +178,68 @@ namespace WebApplication2.Areas.Client
             return Json(arr);
         }
 
+        [HttpGet]
+        public IActionResult List()
+        {
 
+            List<SelectListItem> genders = new List<SelectListItem>();
+            int numbs = 0;
+            foreach (string gen in Enum.GetNames(typeof(GenderEnum)))
+            {
+                genders.Add(new SelectListItem
+                {
+                    Value = gen,
+                    Text = gen
+                });
+            }
+
+            ClientSearchModel client = new ClientSearchModel();
+
+            client.SearchGenders = genders;
+
+
+            List<ClientWeb> clients = _context.ClientWeb.Take(50).ToList();
+
+            JoinClass jointest = new JoinClass();
+
+            jointest.Clients = clients;
+            jointest.ClientSearchModel = client;
+
+            return View(jointest);
+
+        }
+
+        [HttpPost]
+        public IActionResult PostList( ClientSearchModel model)
+        {
+            //List<ClientWeb> clients = _context.ClientWeb.Where(c => c.CodClient.Equals(model.SearchCodClient)).ToList();
+            IQueryable<ClientWeb> clients = _context.ClientWeb;
+
+            if (model.SearchCodClient != null)
+            {
+                clients = clients.Where(c => c.CodClient.Contains(model.SearchCodClient));
+            }
+            if (model.SearchEmail != null)
+            {
+                clients = clients.Where(c => c.Email.Contains(model.SearchCodClient));
+            }
+            if (model.SearchSfirstName != null)
+            {
+                clients = clients.Where(c => c.SfirstName.Contains(model.SearchSfirstName));
+            }
+
+            if (model.SearchSlastName != null)
+            {
+                clients.Where(c => c.SlastName.Equals(model.SearchSlastName));
+            }
+
+            JoinClass jointest = new JoinClass();
+
+            jointest.ClientSearchModel = model;
+            jointest.Clients = clients.ToList();
+
+            return View("list", jointest);
+        }
 
     }
 }

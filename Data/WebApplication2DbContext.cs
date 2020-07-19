@@ -24,7 +24,6 @@ namespace WebApplication2.Data
 
         public DbSet<ClientWeb> ClientWeb { get; set; }
 
-
         public DbSet<GetTinUnderWBook> GetTinUnderWBook { get; set; }
 
 
@@ -50,10 +49,13 @@ namespace WebApplication2.Data
             {
                 gt.HasNoKey();
             });
-               
-            
 
+         
+    }
+
+        public static implicit operator WebApplication2DbContext(ApplicationDbContext v)
+        {
+            throw new NotImplementedException();
         }
-
     }
 }

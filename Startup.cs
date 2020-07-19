@@ -1,17 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using WebApplication2.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Mvc.DataAnnotations;
 
 namespace WebApplication2
 {
@@ -35,8 +32,29 @@ namespace WebApplication2
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddControllersWithViews(); 
+
+            services.AddRazorPages()
+                .AddMvcOptions(options =>
+                { 
+                    options.MaxModelValidationErrors = 50;
+                    options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
+                    _ => "The field is required.");
+                });
+
+            //services.AddSingleton<IValidationAttributeAdapterProvider,
+            //    CustomValidationAttributeAdapterProvider>();
+
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
+                //options.AreaViewLocationFormats.Clear();
+                options.AreaViewLocationFormats.Add("/Areas/{2}/Views/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Areas/{2}/Views/Shared/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+            });
+
+            services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+
         }
 
 
@@ -68,7 +86,15 @@ namespace WebApplication2
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
-                endpoints.MapAreaControllerRoute("Policys", "Policy", "{controller=Home}/{action=Query}/{id?}");
+                //endpoints.MapAreaControllerRoute("Policys", "Policy", "{controller=Home}/{action=Query}/{id?}");
+                endpoints.MapControllerRoute(
+                     name: "Client",
+                     pattern: "{area:exists}/{controller=Client}/{action=List}/{id?}");
+                });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
             });
         }
     }
