@@ -1,0 +1,223 @@
+﻿@model WebApplication2.Models.Address
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="wrapper">
+        @await Html.PartialAsync("~/Views/Shared/_NavBarPartial.cshtml")
+        <!-- Navbar -->
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+
+        @await Html.PartialAsync("~/Views/Shared/_Aside.cshtml")
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Direcciones</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">ChartJS</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <form role="form" id="createAddress" method="post" enctype="multipart/form-data" action="/address/address/postcreate">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            @*<input type="hidden" id="ClientWebId" name="ClientWebId" value="@ViewData["ClientWebId"]" />*@
+                            <input asp-for="ClientWebId" value="@ViewData["ClientWebId"]" />
+
+                            <div class="row form-group">
+                                <div class="col-sm-6 input-group mb-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><b>@Html.DisplayNameFor(model => model.Street)</b></span>
+                                    </div>
+                                    <input asp-for="Street" class="form-control" />
+                                    <span asp-validation-for="Street" class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-6 input-group mb-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><b>@Html.DisplayNameFor(model => model.Building)</b></span>
+                                    </div>
+                                    <input asp-for="Building" class="form-control" />
+                                    <span asp-validation-for="Building" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-6 input-group mb-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><b>@Html.DisplayNameFor(model => model.Deck)</b></span>
+                                    </div>
+                                    <input asp-for="Deck" class="form-control" />
+                                    <span asp-validation-for="Deck" class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-6 input-group mb-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><b>@Html.DisplayNameFor(model => model.Letter)</b></span>
+                                    </div>
+                                    <input asp-for="Letter" class="form-control" />
+                                    <span asp-validation-for="Letter" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-6 input-group mb-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><b>@Html.DisplayNameFor(model => model.CountryId)</b></span>
+                                    </div>
+                                    <select asp-for="CountryId" class="form-control select2 select2-hidden-accessible" asp-items="ViewBag.CountryId">
+                                        <option value="0">Seleccione ---</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6 input-group mb-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><b>@Html.DisplayNameFor(model => model.ProvinceId)</b></span>
+                                    </div>
+                                    <select asp-for="ProvinceId" class="form-control  select2 select2-hidden-accessible" asp-items="ViewBag.ProvinceId">
+                                        <option value="0">Seleccione ---</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-6 input-group mb-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><b>@Html.DisplayNameFor(model => model.LocalityId)</b></span>
+                                    </div>
+                                    <select asp-for="LocalityId" class="form-control select2 select2-hidden-accessible" asp-items="ViewBag.LocalityId">
+                                        <option value="0">Seleccione ---</option>
+                                    </select>
+                                    <span asp-validation-for="LocalityId" class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-6 input-group mb-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><b>@Html.DisplayNameFor(model => model.MunicipalityId)</b></span>
+                                    </div>
+                                    <select asp-for="MunicipalityId" class="form-control select2 select2-hidden-accessible" asp-items="ViewBag.LocalityId">
+                                        <option value="0">Seleccione ---</option>
+                                    </select>
+                                    <span asp-validation-for="MunicipalityId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-6 input-group mb-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><b>@Html.DisplayNameFor(model => model.ZipCodeId)</b></span>
+                                    </div>
+                                    <select asp-for="ZipCodeId" class="form-control select2 select2-hidden-accessible" asp-items="ViewBag.ZipCodeId">
+                                        <option value="0">Seleccione ---</option>
+                                    </select>
+                                    <span asp-validation-for="ZipCodeId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+
+<script>
+    $(document).ready(function () {
+
+        $("#CountryId").change(function () {
+            $.ajax({
+                url: "/address/address/Getprovinces",
+                context: document.body,
+                data: {
+                    "countryId": $('#CountryId').val()
+                },
+            }).done(function (data) {
+
+                for (let i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+                    $('#ProvinceId').append(new Option(data[i].text, data[i].value));
+                }
+            });
+        });
+
+        function getDataLocalities(ajaxurl) {
+            return $.ajax({
+                url: ajaxurl,
+                type: 'GET',
+                data: {
+                    "countryId": $('#CountryId').val(),
+                    "provinceId": $('#ProvinceId').val()
+                },
+            });
+        };
+
+        $("#ProvinceId").change(function () {
+            getDataLocalities("/address/address/GetLocalities").then(function (data) {
+                console.log(data);
+
+                for (let i = 0; i < data.length; i++) {
+                    $('#LocalityId').append(new Option(data[i].text, data[i].value));
+                }
+            });
+        });
+
+        function getDataMunicipality(ajaxurl) {
+            return $.ajax({
+                url: ajaxurl,
+                type: 'GET',
+                data: {
+                    "countryId": $('#CountryId').val(),
+                    "provinceId": $('#ProvinceId').val(),
+                    "localityId": $('#LocalityId').val()
+                },
+            });
+        };
+
+        $("#LocalityId").change(function () {
+            getDataMunicipality("/address/address/GetMunicipalities").then(function (data) {
+                for (let i = 0; i < data.length; i++) {
+                    $('#MunicipalityId').append(new Option(data[i].text, data[i].value));
+                }
+            });
+        });
+
+        function getDataZipCodes(ajaxurl) {
+            return $.ajax({
+                url: ajaxurl,
+                type: 'GET',
+                data: {
+                    "countryId": $('#CountryId').val(),
+                    "provinceId": $('#ProvinceId').val(),
+                    "localityId": $('#LocalityId').val(),
+                    "municipalityId": $('#MunicipalityId').val()
+                },
+            });
+        };
+
+        $("#MunicipalityId").change(function () {
+            getDataZipCodes("/address/address/GetZipCodes").then(function (data) {
+                console.log(data);
+
+                for (let i = 0; i < data.length; i++) {
+                    $('#ZipCodeId').append(new Option(data[i].text, data[i].value));
+                }
+            });
+        });
+    });
+
+</script>

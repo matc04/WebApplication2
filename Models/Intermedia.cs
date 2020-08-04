@@ -13,7 +13,28 @@ namespace WebApplication2.Models
         [Display(Name = "Codigo Intermediario")]
         public decimal Nintermed { get; set; }
 
+#nullable enable
+
         public string? Sclient { get; set; }
+
+        public decimal? Nintertyp { get; set; }
+
+        public decimal? Nnullcode { get; set; }
+
+        [DataType(DataType.Date)]
+
+        public DateTime? Dnulldate { get; set; }
+
+        public decimal? Noffice { get; set; }
+
+        public decimal? Nsupervis { get; set; }
+
+        public decimal? Nagency { get; set; }
+
+        public decimal? NofficeAgen { get; set; }
+
+#nullable disable
+
 
         [DataType(DataType.Date)]
         public DateTime Dcompdate { get; set; }
@@ -23,21 +44,8 @@ namespace WebApplication2.Models
 
         public decimal Nint_status { get; set; }
 
-        public decimal?  Nintertyp { get; set; }
 
-        public decimal? Nnullcode { get; set; }
-
-        [DataType(DataType.Date)]
-
-        public DateTime? Dnulldate { get; set; }
         
-        public decimal? Noffice { get; set; }
-
-        public decimal? Nsupervis { get; set; }
-        
-        public decimal? Nagency { get; set; }
-
-        public decimal? NofficeAgen { get; set; }
         
         public string Svalid { get; set; }
 

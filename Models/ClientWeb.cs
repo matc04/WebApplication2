@@ -17,6 +17,8 @@ namespace WebApplication2.Models
 		[Required]
 		public string CodClient { get; set; }
 
+#nullable enable
+
 		[Display(Name = "Número Identificación")]
 		public string? NumDocument { get; set; }
 
@@ -37,6 +39,20 @@ namespace WebApplication2.Models
 		[DataType(DataType.Date)]
 		public DateTime? DeathDat { get; set; }
 
+		[Display(Name = "Nombre Legal")]
+		public string? SlegalName { get; set; }
+		[Display(Name = "Nombre Completo")]
+		public string? SclieName { get; set; }
+
+		[Display(Name = "Correo Electrónico")]
+		public string? Email { get; set; }
+
+		[Display(Name = "Número Telefónico")]
+        public string? Phone_Number { get; set; }
+
+#nullable disable
+
+
 		[Display(Name = "Fecha Ingreso")]
 		[DataType(DataType.Date)]
 		public DateTime InpDate { get; set; }
@@ -47,31 +63,8 @@ namespace WebApplication2.Models
         [Display(Name = "Tipo Persona")]
         public string Person_Type { get; set; }
 
-        [Display(Name = "Nombre Legal")]
-		public string? SlegalName { get; set; }
 
-		[Display(Name = "Nombre Completo")]
-		public string? SclieName { get; set; }
-
-		[Display(Name = "Correo Electrónico")]
-		public string? Email { get; set; }
-
-		[Display(Name = "Número Telefónico")]
-		public string? Phone_Number { get; set; }
-
-		//public PersonTypeEnum PersonSel { get; set; }
-
-		//public enum PersonTypeEnum
-		//{
-		//	[Display(Name = "Companies")]
-		//	PrivateSector,
-
-		//	[Display(Name = "PublicSector")]
-		//	PublicSector,
-
-		//	Internal
-		//}
-
+		public  virtual ICollection<Address> Addresses { get; set; }
 
 
 		public int GetAge()

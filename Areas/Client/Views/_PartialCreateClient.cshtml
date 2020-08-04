@@ -1,0 +1,141 @@
+﻿@model WebApplication2.Areas.Client.Models.ClientWebAddress
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="wrapper">
+    @await Html.PartialAsync("~/Views/Shared/_NavBarPartial.cshtml")
+    <!-- Navbar -->
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    @await Html.PartialAsync("~/Views/Shared/_Aside.cshtml")
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Clientes</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">ChartJS</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form role="form" id="createClient" method="post" enctype="multipart/form-data" action="/client/client/postcreate">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.CodClient" class="control-label"></label>
+                            <input asp-for="ClientWeb.CodClient" class="form-control" />
+                            <span asp-validation-for="ClientWeb.CodClient" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.NumDocument" class="control-label"></label>
+                            <input asp-for="ClientWeb.NumDocument" class="form-control" />
+                            <span asp-validation-for="ClientWeb.NumDocument" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.CivilSta" class="control-label"></label>
+                            @Html.DropDownList("model.CivilSta", ViewData["civilStaItems"] as List<SelectListItem>, new { @class = "form-control  select2 select2-hidden-accessible" })
+                            @Html.ValidationMessageFor(model => model.ClientWeb.CivilSta)
+                            <span asp-validation-for="ClientWeb.CivilSta" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.Birthdat" class="control-label"></label>
+                            <input type="text" class="form-control datetimepicker-input" data-target="#Birthdat" name="InpDate" id="datepick_Birthdat">
+                            <span asp-validation-for="ClientWeb.Birthdat" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.SfirstName" class="control-label"></label>
+                            <input asp-for="ClientWeb.SfirstName" class="form-control" />
+                            <span asp-validation-for="ClientWeb.SfirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.SlastName" class="control-label"></label>
+                            <input asp-for="ClientWeb.SlastName" class="form-control" />
+                            <span asp-validation-for="ClientWeb.SlastName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.DeathDat" class="control-label"></label>
+                            <input type="text" class="form-control datetimepicker-input" data-target="#DeathDat" name="DeathDat" id="datepick_Deathdat">
+                            <span asp-validation-for="ClientWeb.DeathDat" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.InpDate" class="control-label"></label>
+                            <input type="text" class="form-control datetimepicker-input" data-target="#InpDate" name="InpDate" id="datepick_Inpdate">
+
+                            <span asp-validation-for="ClientWeb.InpDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.Gender" class="control-label"></label>
+                            @Html.DropDownList("Gender", ViewData["GenderItems"] as List<SelectListItem>, new { @class = "form-control  select2 select2-hidden-accessible" })
+                            @Html.ValidationMessageFor(model => model.ClientWeb.Gender)
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.Person_Type" class="control-label"></label>
+                            @Html.DropDownList("Person_Type", ViewData["TypePersonItems"] as List<SelectListItem>, new { @class = "form-control  select2 select2-hidden-accessible" })
+                            @Html.ValidationMessageFor(model => model.ClientWeb.Person_Type)
+                            <span asp-validation-for="ClientWeb.Person_Type" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.SlegalName" class="control-label"></label>
+                            <input asp-for="ClientWeb.SlegalName" class="form-control" name="SlegalName" />
+                            <span asp-validation-for="ClientWeb.SlegalName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.SclieName" class="control-label"></label>
+                            <input asp-for="ClientWeb.SclieName" class="form-control" name="SclieName" />
+                            <span asp-validation-for="ClientWeb.SclieName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.Email" class="control-label"></label>
+                            <input asp-for="ClientWeb.Email" class="form-control" name="Email" />
+                            <span asp-validation-for="ClientWeb.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientWeb.Phone_Number" class="control-label"></label>
+                            <input asp-for="ClientWeb.Phone_Number" class="form-control" name="Phone_Number" />
+                            <span asp-validation-for="ClientWeb.Phone_Number" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+
+                    </form>
+                </div> 
+            </div>
+            @await Html.PartialAsync("_PartialCreateAddress", Model.Address)
+        </section>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#datepick_Birthdat").datepicker();
+        $("#datepick_Deathdat").datepicker();
+        $("#datepick_Inpdate").datepicker();
+    });
+</script>
+
+

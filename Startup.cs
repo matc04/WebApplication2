@@ -55,6 +55,8 @@ namespace WebApplication2
 
             services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 
+            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddSession();
         }
 
 
@@ -77,6 +79,8 @@ namespace WebApplication2
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -86,11 +90,18 @@ namespace WebApplication2
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+
                 //endpoints.MapAreaControllerRoute("Policys", "Policy", "{controller=Home}/{action=Query}/{id?}");
                 endpoints.MapControllerRoute(
                      name: "Client",
-                     pattern: "{area:exists}/{controller=Client}/{action=List}/{id?}");
-                });
+                     pattern: "{area:exists}/{controller=Client}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "Address",
+                    pattern: "{area:exists}/{controller=Address}/{action=Index}/{id?}");
+            });
+
+
 
             app.UseEndpoints(endpoints =>
             {
